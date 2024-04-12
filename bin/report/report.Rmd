@@ -1,0 +1,46 @@
+---
+output: 
+  html_document:
+    code_download: false
+    toc: true                  # table of content true
+    toc_depth: 3               # upto three depths of headings (specified by #, ## and ###)
+    toc_float: true
+    number_sections: true      # if you want number sections at each table header
+    theme: united              # many options for theme, this one is my favorite.
+    highlight: tango           # specifies the syntax highlighting style
+    css: 'style.css'
+params:
+  res_table: x
+title: "`r paste0('Report title' , '') `"
+author: ""
+date: ""
+---
+
+<img src="logo.png" width=100 style="position:absolute;top:4px;bottom:4px;right:4px;" />
+
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE)
+```
+
+```{r echo = FALSE}
+suppressPackageStartupMessages({
+    library(reactable)
+    library(reactR)
+    library(reactablefmtr)
+    library(htmltools)
+    library(dplyr)
+})
+source("reactable_funcs.R")
+```
+
+# About
+
+# Results Table
+
+```{r res_table}
+# Read the table in as a dataframe
+data <- read.table(params$res_table, header = T, sep = ",")
+# Generate reactable with data from reactable_funcs.R
+generateReactable(data)
+```
