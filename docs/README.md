@@ -1,38 +1,34 @@
-# bcftools-s3-nf
+# templateDocumentation
 
 ## Pipeline description
 
-A nextflow pipeline with bcftools subcomamnds to run quick actions with VCF files directly from s3.
+A nextflow pipeline for....
 
 ## Input
 
 ### `--input`
 
-Input file is a VCF file with s3 path meantioned in each new line. Example - `--input file.vcf` (contents shown below)
+Input parameter.... Example - `--input` (contents shown below)
 
 ```
-s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1.vcf.gz
+Your example code...
 ```
 
 ## Output
 
-Output is a uncompressed VCF file format.
+Output is....
 
 ## Usage
 
 ```bash
-nextflow run main.nf --input file.vcf --input_index file.vcf.csi -with-docker
+nextflow run main.nf --input <> -with-docker
 ```
 
 ## Options
 
-### `--genomic_region`
+### `--add1`
 
-The genomic range which need to be merged. Example - `--genomic_region "chr1:146421218-165998654"`
-
-### `--bcftools_view_options`
-
-Any addional `bcftools merge` options. Example - `--bcftools_view_options "--samples id1 --force-samples"`
+Additional parameters...
 
 
 <!-- For Sphinx doc, This option will be auto rendered help() section from Nextflow main.nf in the doc build -->
