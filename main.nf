@@ -4,7 +4,7 @@
 |                        dsl2-template-nf                                   |
 =============================================================================
 |    #### Homepage / Documentation                                          |
-|    https://github.com/lifebit-ai/dsl2-template-nf/blob/dev/docs/README.md |
+|    https://github.com/lifebit-ai/template4users/blob/main/docs/README.md |
 -----------------------------------------------------------------------------
 */
 
@@ -33,14 +33,14 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 
 def helpMessage() {
     if ( workflow.userName != "ec2-user" ) {
-        log.info lifebitLogo()
+        log.info comptext()
     }
     log.info """
     Usage:
     The typical command for running the pipeline is as follows:
 
     Mandatory:
-    --input                Input csv file
+    --input                Input file
 
     Resource Options:
     --max_cpus            Maximum number of CPUs (int)
@@ -53,9 +53,9 @@ def helpMessage() {
     """.stripIndent()
 }
 
-// Print Lifebit logo to stdout
+// Print completion text to stdout
 if ( workflow.userName != "ec2-user" ) {
-    print lifebitLogo()
+    print comptext()
 }
 
 /* --------------------
@@ -110,35 +110,39 @@ process OBTAIN_PIPELINE_METADATA {
     '''
 }
 
-
-process BCFTOOLS_VIEW {
+// EDIT HERE
+process process1 {
     label "process_large"
-    label "bcftools"
+    label "process1"
     echo true
     publishDir "${params.outdir}", mode: "copy"
 
     input:
-    path(vcf_paths_file)
-    path(vcf_index)
+    // Define your input files e.g. path(input_paths_file)
+
 
     output:
-    tuple val(params.genomic_region), path("*filtered.vcf.gz"), path("*.tbi"), emit:filtered_vcf
+    // Define your Output files and variables e.g. tuple val(params.add1), path("*.txt")
+   
 
     script:
     """
-    echo "[INFO] Running the bcftools view command!"
-    bcftools view \
-        -Oz --output ${vcf_paths_file.baseName}_filtered.vcf.gz \
-        --regions $params.genomic_region \
-        --threads ${params.large_cpus} \
-        $vcf_paths_file \
-        $params.bcftools_view_options
-    echo "[INFO] Running the bcftools index command"
-    bcftools index -t ${vcf_paths_file.baseName}_filtered.vcf.gz
+    // Write your script of commands here
+    echo "[INFO] Running the process!"
+    // ------------------------------------------
+    // e.g. bcftools view \
+    //    -Oz --output ${output.vcf.gz} \
+    //    --regions chr1 \
+    //    --threads ${params.large_cpus} \
+    //    $vcf_paths_file
+    echo "[INFO] Completed process1"
+    // ------------------------------------------
     """
 }
+// TOO HERE
 
-workflow BCFTOOLS {
+// EDIT workflow name
+workflow process1 {
 
     main:
 
@@ -179,10 +183,10 @@ workflow BCFTOOLS {
     project_dir = workflow.projectDir
 
     // Define Channels from input
-    
-
-        ch_input_file = Channel.fromPath("${params.input}")
-        ch_index_file = Channel.fromPath("${params.input_index}")
+    // Edit channels, for multiple conditional channels use if and else statements
+    // EDIT HERE
+    ch_input_file = Channel.fromPath("${params.input}")
+    // TOO HERE
     
 
     /*--------------
@@ -211,16 +215,18 @@ workflow BCFTOOLS {
         )
     }
     
-
-        BCFTOOLS_VIEW(ch_input_file,ch_index_file)
+// Run process1 with our input channel parameter
+ // EDIT HERE
+        process1(ch_input_file)
 
 }
 
 workflow {
 
-    BCFTOOLS()
+   process1()
 
 }
+ // TOO HERE
 
 // Trace report
 user_name = workflow.userName
@@ -233,25 +239,14 @@ if (user_name == "ubuntu" || user_name == "ec2-user") {
     }
 }
 
-// ANSII string of Lifebit logo
-def lifebitLogo() {
-    logo  = """
+// ANSII string of completion text
+def comptext() {
+    text  = """
     .................................................................................................
-    .................███████.........................................................................
-    ..............███.......███......................................................................
-    .............███.........███.....................................................................
-    ..............███.......███.........██...██.....██████.............██..............██....██......
-    ...............████...████..........██.........██..................██....................██......
-    ..............██..█████.............██...██...██████....███████....██...█████......██..███████...
-    ............██.......██.............██...██....██....███.......██..████.......██...██....██......
-    .....███████..........██............██...██....██...██████████████.███.........██..██....██......
-    ....██....██...........██...........██...██....██...██.............███.........██..██....██......
-    .....██████............████.........██...██....██....██.........█..███........███..██....██......
-    ....................███....███......██...██....██......█████████...██.█████████....██....██......
-    ....................██......███..................................................................
-    ....................███....███...................................................................
-    ......................██████.....................................................................
+    .................................................................................................
+    .......CONGRATULATIONS FOR WRITING & RUNNING YOUR FIRST PIPELINE ON THE LIFEBIT PLATFORM!........
+    .................................................................................................
     .................................................................................................
     """.stripIndent()
-    return logo
+    return text
 }
