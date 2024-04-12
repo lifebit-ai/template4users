@@ -1,1 +1,11 @@
-
+sample_name,vcf_file
+test_sample_1,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1.vcf.gz
+test_sample_2,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_10.vcf.gz
+test_sample_3,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_100.vcf.gz
+test_sample_4,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1000.vcf.gz
+test_sample_5,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_10000.vcf.gz
+test_sample_6,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1001.vcf.gz
+test_sample_7,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1002.vcf.gz
+test_sample_8,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1003.vcf.gz
+test_sample_9,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1004.vcf.gz
+test_sample_10,s3://lifebit-featured-datasets/pipelines/vcf-aggregation/test_data/large_tests_vcfs/test_sample_1005.vcf.gz
