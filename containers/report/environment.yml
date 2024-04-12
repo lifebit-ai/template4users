@@ -1,0 +1,11 @@
+name: report
+channels:
+  - conda-forge
+  - r
+dependencies:
+  - r-dplyr
+  - r-reactable
+  - r-reactablefmtr
+  - r-reactR
+  - r-htmltools
+  - r-htmlwidgets
