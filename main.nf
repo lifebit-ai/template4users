@@ -127,7 +127,7 @@ process process1 {
 
     script:
     """
-    // Write your script of commands here
+    # Write your script of commands here
     echo "[INFO] Running the process!"
     // ------------------------------------------
     // e.g. bcftools view \
